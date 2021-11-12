@@ -6,6 +6,7 @@ import csv
 from textwrap import dedent
 import requests
 import json
+from datetime import datetime
 
 # The DAG object; we'll need this to instantiate a DAG
 from airflow import DAG
@@ -25,6 +26,7 @@ with DAG(
     default_args=default_args,
     description='ETL DAG Assignment',
     schedule_interval=None,
+    start_date=datetime(2021, 1, 1),
     catchup=False
 ) as dag:
 
