@@ -73,8 +73,15 @@ with DAG(
         extract_data_string = ti.xcom_pull(task_ids='extract', key='data_string')
         resp_data = json.loads(extract_data_string)
 
-        resp_data_filtered=list(map(lambda obj:{'_id':obj['_id'],'name':obj['name'],'trips':obj['trips']},resp_data))
+        #resp_data_filtered=list(map(lambda obj:{'_id':obj['_id'],'name':obj['name'],'trips':obj['trips']},resp_data))
         
+        resp_data_filtered=[]    
+        for i in range(0,len(resp_data)):
+            obj=resp_data[i]
+            resp_data_obj={'_id':obj['_id'],'name':obj['name'],'trips':obj['trips']}
+            resp_data_filtered.append(resp_data_obj)
+
+
         #checking data
         print(resp_data_filtered[:2])
         print(type(resp_data_filtered))        
